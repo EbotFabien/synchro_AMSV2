@@ -9,7 +9,7 @@ from firebase_admin import credentials, firestore, initialize_app
 
 
 
-cred = credentials.Certificate('/Users/pro2015/Desktop/pph folder/synchro/project/app/keys/key_uti.json')
+cred = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/key_uti.json')
 service_user = initialize_app(cred,name='service_users')
 db1 = firestore.client(app=service_user)
 #bcrypt = Bcrypt()
