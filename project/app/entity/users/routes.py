@@ -69,7 +69,7 @@ def createu(typo):
 
 
 @cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
-@users.route('/util/ajouter/<typo>', methods=['POST'])
+@users.route('/util/edit/', methods=['POST'])
 def editu():
     if request:
         if request.json[0]['user']['group'] == "Administrateur":
