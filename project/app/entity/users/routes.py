@@ -1,8 +1,15 @@
 from flask import render_template, url_for,flash,redirect,request,abort,Blueprint,jsonify
-from app import db1,db2
+from app import db1,db2,create_app
 import random
 from flask_cors import CORS,cross_origin
 import requests
+from flask_wkhtmltopdf import Wkhtmltopdf
+
+
+app= create_app()
+
+wkhtmltopdf =Wkhtmltopdf(app)
+
 
 
 agent_sec = db1.collection('Utilisateurs')
