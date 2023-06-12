@@ -11,10 +11,16 @@ from firebase_admin import credentials, firestore, initialize_app
 
 cred = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/key_uti.json')
 cred2 = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/loge.json')
+cred3 = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/dbplan.json')
+cred4 = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/participant.json')
 service_user = initialize_app(cred,name='service_users')
 service_loge = initialize_app(cred2,name='service_logement')
+service_plan = initialize_app(cred3,name='service_planing')
+service_part = initialize_app(cred3,name='service_participant')
 db1 = firestore.client(app=service_user)
 db2 = firestore.client(app=service_loge)
+db3 = firestore.client(app=service_plan)
+db4 = firestore.client(app=service_part)
 #bcrypt = Bcrypt()
 #login_manager = LoginManager()
 #login_manager.login_view ='users.login' #check route 

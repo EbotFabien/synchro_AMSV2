@@ -1,5 +1,5 @@
 from flask import render_template, url_for,flash,redirect,request,abort,Blueprint,jsonify
-from app import db1,db2,create_app
+from app import db1,db2,db3,create_app
 import random
 from flask_cors import CORS,cross_origin
 import requests
@@ -14,6 +14,8 @@ wkhtmltopdf =Wkhtmltopdf(app)
 
 agent_sec = db1.collection('Utilisateurs')
 log_user = db2.collection('user')
+
+log_plan = db3.collection('user')
 
 
 
@@ -39,15 +41,20 @@ def createu(typo):
             }
             todo = agent_sec.document(id).get()
             todo1=log_user.document(id).get()
+            todo3=log_plan.document(id).get()
             stat1=0
             stat2=0
+            stat3=0
             if  todo.to_dict() is None :
                 agent_sec.document(id).set(client)
                 stat1=1
             if  todo1.to_dict() is None :
                 log_user.document(id).set(client)
                 stat2=1
-            return jsonify({"stat":stat1,"stat2":stat2}), 200
+            if  todo3.to_dict() is None :
+                log_plan.document(id).set(client)
+                stat3=1
+            return jsonify({"stat":stat1,"stat2":stat2,"stat3":stat3}), 200
             
     else:
         if request:
@@ -63,15 +70,20 @@ def createu(typo):
             }
             todo = agent_sec.document(id).get()
             todo1=log_user.document(id).get()
+            todo3=log_plan.document(id).get()
             stat1=0
             stat2=0
+            stat3=0
             if  todo.to_dict() is None :
                 agent_sec.document(id).set(client)
                 stat1=1
             if  todo1.to_dict() is None :
                 log_user.document(id).set(client)
                 stat2=1
-            return jsonify({"stat":stat1,"stat2":stat2}), 200
+            if  todo3.to_dict() is None :
+                log_plan.document(id).set(client)
+                stat3=1
+            return jsonify({"stat":stat1,"stat2":stat2,"stat3":stat3}), 200
         
 
 
@@ -92,15 +104,20 @@ def editu():
             }
             todo = agent_sec.document(id).get()
             todo1 =log_user.document(id).get()
+            todo3=log_plan.document(id).get()
             stat1=0
             stat2=0
+            stat3=0
             if  todo.to_dict():
                 agent_sec.document(id).update(client)
                 stat1=1
             if  todo1.to_dict():
                 log_user.document(id).update(client)
                 stat2=1
-            return jsonify({"stat":stat1,"stat2":stat2}), 200
+            if  todo3.to_dict() is None :
+                log_plan.document(id).set(client)
+                stat3=1
+            return jsonify({"stat":stat1,"stat2":stat2,"stat3":stat3}), 200
         
 
         else:
@@ -118,15 +135,20 @@ def editu():
                 }
                 todo = agent_sec.document(id).get()
                 todo1 =log_user.document(id).get()
+                todo3=log_plan.document(id).get()
                 stat1=0
                 stat2=0
+                stat3=0
                 if  todo.to_dict():
                     agent_sec.document(id).update(client)
                     stat1=1
                 if  todo1.to_dict():
                     log_user.document(id).update(client)
                     stat2=1
-                return jsonify({"stat":stat1,"stat2":stat2}), 200
+                if  todo3.to_dict() is None :
+                    log_plan.document(id).set(client)
+                    stat3=1
+            return jsonify({"stat":stat1,"stat2":stat2,"stat3":stat3}), 200
 
 
 
