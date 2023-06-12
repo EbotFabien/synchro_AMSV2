@@ -2,7 +2,7 @@ from flask import render_template, url_for,flash,redirect,request,abort,Blueprin
 from app import db4,create_app
 from flask_cors import CORS,cross_origin
 
-agent_sec = db4.collection('extension')
+agent_sec = db4.collection('Extension')
 
 voie_da = db4.collection('voie')
 
