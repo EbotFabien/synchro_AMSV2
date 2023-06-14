@@ -25,9 +25,9 @@ def createp():
 @edl.route('/edl/logement/edit/', methods=['POST'])
 def editp():
     id=request.json['_id']
-    todo = edl.document(id).get()
+    todo = db_edl.document(id).get()
     stat1=0
     if  todo.to_dict():
-        edl.document(id).update(request.json)
+        db_edl.document(id).update(request.json)
         stat1=1
     return jsonify({"stat":stat1}), 200
