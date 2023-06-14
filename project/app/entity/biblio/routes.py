@@ -6,6 +6,10 @@ agent_sec = db4.collection('Extension')
 
 type_log = db2.collection('type_log')
 
+extension = db2.collection('extenssion')
+
+voie2 = db2.collection('voie')
+
 voie_da = db4.collection('voie')
 
 
@@ -40,11 +44,16 @@ def edittype_log():
 def createex():
     id=request.json['id']
     todo = agent_sec.document(id).get()
+    todo2 = extension.document(id).get()
     stat1=0
+    stat2=0
     if  todo.to_dict() is None :
         agent_sec.document(id).set(request.json())
         stat1=1
-    return jsonify({"stat":stat1}), 200
+    if  todo2.to_dict() is None :
+        extension.document(id).set(request.json())
+        stat2=1
+    return jsonify({"stat1":stat1,"stat2":stat2}), 200
 
 
 
@@ -53,11 +62,17 @@ def createex():
 def editex():
     id=request.json['id']
     todo = agent_sec.document(id).get()
+    todo2 = extension.document(id).get()
     stat1=0
+    stat2=0
     if  todo.to_dict():
         agent_sec.document(id).update(request.json())
         stat1=1
-    return jsonify({"stat":stat1}), 200
+    if  todo2.to_dict() is None :
+        extension.document(id).set(request.json())
+        stat2=1
+    return jsonify({"stat1":stat1,"stat2":stat2}), 200
+    
 
 
 @cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
@@ -65,11 +80,17 @@ def editex():
 def createvo():
     id=request.json['id']
     todo = voie_da.document(id).get()
+    todo2 = voie2.document(id).get()
     stat1=0
+    stat2=0
     if  todo.to_dict() is None :
         voie_da.document(id).set(request.json())
         stat1=1
-    return jsonify({"stat":stat1}), 200
+    if  todo2.to_dict() is None :
+        voie2.document(id).set(request.json())
+        stat2=1
+    return jsonify({"stat1":stat1,"stat2":stat2}), 200
+    
 
 
 
@@ -78,9 +99,15 @@ def createvo():
 def editvo():
     id=request.json['id']
     todo = voie_da.document(id).get()
+    todo2 = voie2.document(id).get()
     stat1=0
+    stat1=2
     if  todo.to_dict():
         voie_da.document(id).update(request.json())
         stat1=1
-    return jsonify({"stat":stat1}), 200
+    if  todo2.to_dict() is None :
+        voie2.document(id).set(request.json())
+        stat2=1
+    return jsonify({"stat1":stat1,"stat2":stat2}), 200
+   
 
