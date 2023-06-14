@@ -12,7 +12,7 @@ edl=Blueprint('edl',__name__)
 @cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
 @edl.route('/edl/logement/ajouter/', methods=['POST'])
 def createp():
-    print(request.json['id'])
+    
     id=request.json['id']
     todo = db_edl.document(id).get()
     stat1=0

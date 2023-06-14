@@ -17,7 +17,7 @@ def createp():
     todo = db_participant.document(id).get()
     stat1=0
     if  todo.to_dict() is None :
-        db_participant.document(id).set(request.json())
+        db_participant.document(id).set(request.json)
         stat1=1
     return jsonify({"stat":stat1}), 200
 
@@ -29,6 +29,6 @@ def editp():
     todo = db_participant.document(id).get()
     stat1=0
     if  todo.to_dict():
-        db_participant.document(id).update(request.json())
+        db_participant.document(id).update(request.json)
         stat1=1
     return jsonify({"stat":stat1}), 200

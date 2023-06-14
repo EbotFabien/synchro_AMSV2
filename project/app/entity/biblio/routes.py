@@ -25,7 +25,18 @@ def creattype_log():
     todo = type_log.document(id).get()
     stat1=0
     if  todo.to_dict() is None :
-        type_log.document(id).set(request.json())
+        type_log.document(id).set(request.json)
+        stat1=1
+    return jsonify({"stat":stat1}), 200
+
+@cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
+@biblio.route('/piece/modify/', methods=['POST'])
+def editpiece():
+    id=request.json['id']
+    todo = db_piece.document(id).get()
+    stat1=0
+    if  todo.to_dict():
+        db_piece.document(id).update(request.json)
         stat1=1
     return jsonify({"stat":stat1}), 200
 
@@ -36,7 +47,7 @@ def creatpiece_log():
     todo = db_piece.document(id).get()
     stat1=0
     if  todo.to_dict() is None :
-        db_piece.document(id).set(request.json())
+        db_piece.document(id).set(request.json)
         stat1=1
     return jsonify({"stat":stat1}), 200
 
@@ -47,7 +58,7 @@ def edittype_log():
     todo = type_log.document(id).get()
     stat1=0
     if  todo.to_dict():
-        type_log.document(id).update(request.json())
+        type_log.document(id).update(request.json)
         stat1=1
     return jsonify({"stat":stat1}), 200
 
@@ -61,10 +72,10 @@ def createex():
     stat1=0
     stat2=0
     if  todo.to_dict() is None :
-        agent_sec.document(id).set(request.json())
+        agent_sec.document(id).set(request.json)
         stat1=1
     if  todo2.to_dict() is None :
-        extension.document(id).set(request.json())
+        extension.document(id).set(request.json)
         stat2=1
     return jsonify({"stat1":stat1,"stat2":stat2}), 200
 
@@ -79,10 +90,10 @@ def editex():
     stat1=0
     stat2=0
     if  todo.to_dict():
-        agent_sec.document(id).update(request.json())
+        agent_sec.document(id).update(request.json)
         stat1=1
     if  todo2.to_dict() is None :
-        extension.document(id).set(request.json())
+        extension.document(id).set(request.json)
         stat2=1
     return jsonify({"stat1":stat1,"stat2":stat2}), 200
     
@@ -97,10 +108,10 @@ def createvo():
     stat1=0
     stat2=0
     if  todo.to_dict() is None :
-        voie_da.document(id).set(request.json())
+        voie_da.document(id).set(request.json)
         stat1=1
     if  todo2.to_dict() is None :
-        voie2.document(id).set(request.json())
+        voie2.document(id).set(request.json)
         stat2=1
     return jsonify({"stat1":stat1,"stat2":stat2}), 200
     
