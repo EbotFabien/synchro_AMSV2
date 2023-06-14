@@ -12,6 +12,8 @@ voie2 = db2.collection('voie')
 
 voie_da = db4.collection('voie')
 
+db_piece = db2.collection('piece')
+
 
 
 biblio =Blueprint('biblio',__name__)
@@ -24,6 +26,17 @@ def creattype_log():
     stat1=0
     if  todo.to_dict() is None :
         type_log.document(id).set(request.json())
+        stat1=1
+    return jsonify({"stat":stat1}), 200
+
+@cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
+@biblio.route('/piece/ajouter/', methods=['POST'])
+def creattype_log():
+    id=request.json['id']
+    todo = db_piece.document(id).get()
+    stat1=0
+    if  todo.to_dict() is None :
+        db_piece.document(id).set(request.json())
         stat1=1
     return jsonify({"stat":stat1}), 200
 
