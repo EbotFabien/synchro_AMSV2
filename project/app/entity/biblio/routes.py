@@ -127,10 +127,10 @@ def editvo():
     stat1=0
     stat1=2
     if  todo.to_dict():
-        voie_da.document(id).update(request.json())
+        voie_da.document(id).update(request.json)
         stat1=1
     if  todo2.to_dict() is None :
-        voie2.document(id).set(request.json())
+        voie2.document(id).set(request.json)
         stat2=1
     return jsonify({"stat1":stat1,"stat2":stat2}), 200
    
