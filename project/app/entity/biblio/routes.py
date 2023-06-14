@@ -24,7 +24,7 @@ def creattype_log():
     return jsonify({"stat":stat1}), 200
 
 @cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
-@biblio.route('/extension/modify/', methods=['POST'])
+@biblio.route('/type_log/modify/', methods=['POST'])
 def edittype_log():
     id=request.json['id']
     todo = type_log.document(id).get()
