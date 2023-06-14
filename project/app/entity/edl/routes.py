@@ -12,12 +12,12 @@ edl=Blueprint('edl',__name__)
 @cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
 @edl.route('/edl/logement/ajouter/', methods=['POST'])
 def createp():
-    print(request.json)
+    print(request.json['id'])
     id=request.json['id']
     todo = db_edl.document(id).get()
     stat1=0
     if  todo.to_dict() is None :
-        db_edl.document(id).set(request.json())
+        db_edl.document(id).set(request.json)
         stat1=1
     return jsonify({"stat":stat1}), 200
 
@@ -28,6 +28,6 @@ def editp():
     todo = edl.document(id).get()
     stat1=0
     if  todo.to_dict():
-        edl.document(id).update(request.json())
+        edl.document(id).update(request.json)
         stat1=1
     return jsonify({"stat":stat1}), 200
