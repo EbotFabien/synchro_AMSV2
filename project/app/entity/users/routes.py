@@ -3,12 +3,10 @@ from app import db1,db2,db3,create_app
 import random
 from flask_cors import CORS,cross_origin
 import requests
-from flask_wkhtmltopdf import Wkhtmltopdf
+#from flask_wkhtmltopdf import Wkhtmltopdf
 
 
-app= create_app()
 
-wkhtmltopdf =Wkhtmltopdf(app)
 
 
 
@@ -22,6 +20,9 @@ log_plan = db3.collection('user')
 
 users =Blueprint('users',__name__)
 
+#app= create_app()
+
+#wkhtmltopdf =Wkhtmltopdf(app)
 
 @cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
 @users.route('/util/ajouter/<typo>', methods=['POST'])
