@@ -31,7 +31,7 @@ def creattype_log():
 
 @cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
 @biblio.route('/piece/ajouter/', methods=['POST'])
-def creattype_log():
+def creatpiece_log():
     id=request.json['id']
     todo = db_piece.document(id).get()
     stat1=0
