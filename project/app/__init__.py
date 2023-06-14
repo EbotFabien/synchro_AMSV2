@@ -11,16 +11,20 @@ from firebase_admin import credentials, firestore, initialize_app
 
 cred = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/key_uti.json')
 cred2 = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/loge.json')
-cred3 = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/dbplan.json')
+cred3 = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/edl.json')
 cred4 = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/participant.json')
+#cred5 = credentials.Certificate('/work/www/microservice_edl/syncro/project/app/keys/edl.json')
 service_user = initialize_app(cred,name='service_users')
 service_loge = initialize_app(cred2,name='service_logement')
 service_plan = initialize_app(cred3,name='service_planing')
-service_part = initialize_app(cred3,name='service_participant')
+service_part = initialize_app(cred4,name='service_participant')
+#service_edl = initialize_app(cred5,name='service_edl')
+
 db1 = firestore.client(app=service_user)
 db2 = firestore.client(app=service_loge)
 db3 = firestore.client(app=service_plan)
 db4 = firestore.client(app=service_part)
+#db5 = firestore.client(app=service_edl)
 #bcrypt = Bcrypt()
 #login_manager = LoginManager()
 #login_manager.login_view ='users.login' #check route 
@@ -40,9 +44,12 @@ def create_app(config_class=Config):
     from app.entity.users.routes import users
     from app.entity.biblio.routes import biblio
     from app.entity.participants.routes import participants
+    from app.entity.edl.routes import edl
+
     app.register_blueprint(users)
     app.register_blueprint(biblio)
     app.register_blueprint(participants)
+    app.register_blueprint(edl)
 
 
     return app
