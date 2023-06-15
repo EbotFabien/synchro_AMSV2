@@ -38,7 +38,7 @@ def createclient():
 
 @cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
 @participants.route('/client/edit/', methods=['POST'])
-def editp():
+def editclient():
     id=request.json['id']
     todo = client_users.document(id).get()
     todo2 = client_logement.document(id).get()
