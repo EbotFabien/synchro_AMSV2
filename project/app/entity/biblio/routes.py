@@ -14,6 +14,8 @@ voie_da = db4.collection('voie')
 
 db_piece = db2.collection('piece')
 
+db_rubriq = db2.collection('rubriq')
+
 
 
 biblio =Blueprint('biblio',__name__)
@@ -48,6 +50,28 @@ def creatpiece_log():
     stat1=0
     if  todo.to_dict() is None :
         db_piece.document(id).set(request.json)
+        stat1=1
+    return jsonify({"stat":stat1}), 200
+
+@cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
+@biblio.route('/rubric/modify/', methods=['POST'])
+def editrubric():
+    id=request.json['id']
+    todo = db_rubriq.document(id).get()
+    stat1=0
+    if  todo.to_dict():
+        db_rubriq.document(id).update(request.json)
+        stat1=1
+    return jsonify({"stat":stat1}), 200
+
+@cross_origin(origin=["http://127.0.0.1:5274","http://195.15.228.250","*"],headers=['Content-Type','Authorization'],automatic_options=False)
+@biblio.route('/rubric/ajouter/', methods=['POST'])
+def creatrubric_log():
+    id=request.json['id']
+    todo = db_rubriq.document(id).get()
+    stat1=0
+    if  todo.to_dict() is None :
+        db_rubriq.document(id).set(request.json)
         stat1=1
     return jsonify({"stat":stat1}), 200
 
