@@ -168,7 +168,7 @@ def editex():
     if  todo.to_dict():
         agent_sec.document(id).update(request.json)
         stat1=1
-    if  todo2.to_dict() is None :
+    if  todo2.to_dict():
         extension.document(id).set(request.json)
         stat2=1
     return jsonify({"stat1":stat1,"stat2":stat2}), 200
@@ -205,7 +205,7 @@ def editvo():
     if  todo.to_dict():
         voie_da.document(id).update(request.json)
         stat1=1
-    if  todo2.to_dict() is None :
+    if  todo2.to_dict():
         voie2.document(id).set(request.json)
         stat2=1
     return jsonify({"stat1":stat1,"stat2":stat2}), 200
