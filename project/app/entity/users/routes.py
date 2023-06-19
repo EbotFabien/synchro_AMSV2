@@ -115,7 +115,7 @@ def editu():
             if  todo1.to_dict():
                 log_user.document(id).update(client)
                 stat2=1
-            if  todo3.to_dict() is None :
+            if  todo3.to_dict():
                 log_plan.document(id).set(client)
                 stat3=1
             return jsonify({"stat":stat1,"stat2":stat2,"stat3":stat3}), 200
@@ -146,7 +146,7 @@ def editu():
                 if  todo1.to_dict():
                     log_user.document(id).update(client)
                     stat2=1
-                if  todo3.to_dict() is None :
+                if  todo3.to_dict():
                     log_plan.document(id).set(client)
                     stat3=1
             return jsonify({"stat":stat1,"stat2":stat2,"stat3":stat3}), 200
